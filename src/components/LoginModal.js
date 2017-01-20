@@ -15,6 +15,9 @@ export default function LoginModal(props) {
   let handleClose = () => {
     props.toggle()
   };
+  let handleSubmit = () => {
+    props.submit()
+  }
 
   const actions = [
     <FlatButton
@@ -26,7 +29,7 @@ export default function LoginModal(props) {
     label="Submit"
     primary={true}
     keyboardFocused={true}
-    onTouchTap={handleClose}
+    onTouchTap={handleSubmit}
     />,
   ];
 

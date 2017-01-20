@@ -11,7 +11,6 @@ injectTapEventPlugin();
 // Containters
 //
 import Snippets from './containers/Snippets';
-import Nav from './containers/Nav'
 import ToolBar from './containers/ToolBar'
 
 

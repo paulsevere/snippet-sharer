@@ -2,7 +2,6 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { cyan500, darkBlack, green500, grey100, grey300, grey500, grey800, white } from 'material-ui/styles/colors'
 import { fade } from 'material-ui/utils/colorManipulator'
-console.log(darkBaseTheme)
 
 let myTheme = {
   spacing: {

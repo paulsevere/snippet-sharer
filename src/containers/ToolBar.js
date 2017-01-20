@@ -1,15 +1,14 @@
 import React from 'react';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import FlatButton from 'material-ui/FlatButton';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import { connect } from 'react-redux'
-import LoginModal from '../components/Login'
-import LoginForm from '../components/loginForm'
+import LoginForm from '../components/LoginForm'
+import { logOut } from '../actions/authentication'
 class TopBar extends React.Component {
 
   constructor(props) {
@@ -17,12 +16,54 @@ class TopBar extends React.Component {
     this.state = {
       value: 3,
       loginModal: false,
-      signupModal: true
+      signupModal: false
     };
   }
+
+  notLogged = () => {
+    return (
+      <ToolbarGroup>
+        <ToolbarSeparator/>
+        <FlatButton label="login" onTouchTap={this.toggleLogin}/>
+        <FlatButton label="signup" onTouchTap={this.toggleSignup}/>
+
+        <IconMenu iconButtonElement={< IconButton touch={
+      true
+      } > <NavigationExpandMoreIcon/> < /IconButton>}>
+            <MenuItem primaryText="Download"/>
+            <MenuItem primaryText="More Info"/>
+        </IconMenu>
+    </ToolbarGroup>
+    )
+  }
+
+
+  logged = () => {
+
+    return (
+      <ToolbarGroup>
+      <ToolbarSeparator/>
+      <FlatButton label="log out" onTouchTap={() => this.props.dispatch(logOut())}/>
+
+      <IconMenu iconButtonElement={< IconButton touch={
+      true
+      } > <NavigationExpandMoreIcon/> < /IconButton>}>
+          <MenuItem primaryText="Download"/>
+          <MenuItem primaryText="More Info"/>
+      </IconMenu>
+  </ToolbarGroup>
+    )
+  }
+
+
   toggleLogin = () => {
     this.setState({
       loginModal: !this.state.loginModal
+    })
+  }
+  toggleSignup = () => {
+    this.setState({
+      signupModal: !this.state.signupModal
     })
   }
 
@@ -33,44 +74,32 @@ class TopBar extends React.Component {
   render() {
     return (
       <div>
-      <Toolbar>
-        <ToolbarGroup firstChild={true}>
-          <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-            <MenuItem value={1} primaryText="All Broadcasts" />
-            <MenuItem value={2} primaryText="All Voice" />
-            <MenuItem value={3} primaryText="All Text" />
-            <MenuItem value={4} primaryText="Complete Voice" />
-            <MenuItem value={5} primaryText="Complete Text" />
-            <MenuItem value={6} primaryText="Active Voice" />
-            <MenuItem value={7} primaryText="Active Text" />
-          </DropDownMenu>
-        </ToolbarGroup>
-        <ToolbarGroup>
-          <ToolbarSeparator />
-          <FlatButton label="login" onTouchTap={this.toggleLogin}/>
-            <FlatButton label="signup" onTouchTap={this.toggleLogin}/>
+                <Toolbar>
+                    <ToolbarGroup firstChild={true}>
+                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+                            <MenuItem value={1} primaryText="All Broadcasts"/>
+                        </DropDownMenu>
+                    </ToolbarGroup>
+                    {this.props.user ? this.logged() : this.notLogged()}
+                    </Toolbar>
 
-          <IconMenu
-      iconButtonElement={
-      <IconButton touch={true}>
-                <NavigationExpandMoreIcon />
-              </IconButton>
-      }
-      >
-            <MenuItem primaryText="Download" />
-            <MenuItem primaryText="More Info" />
-          </IconMenu>
-        </ToolbarGroup>
+                <LoginForm
+      dispatch={this.props.dispatch}
+      toggle={this.toggleLogin}
+      error={this.props.error}
 
-      </Toolbar>
-      <LoginModal title="log in" toggle={this.toggleLogin} open={this.state.loginModal}>
-      <LoginForm/>
-      </LoginModal>
-      <LoginModal title="sign up" toggle={this.toggleLogin} open={this.state.signupModal}>
-      <LoginForm signUp={true}/>
-      </LoginModal>
+      open={this.state.loginModal && !this.props.user}>
+                  </LoginForm>
 
-    </div>
+                 <LoginForm
+      dispatch={this.props.dispatch}
+      toggle={this.toggleSignup}
+      open={this.state.signupModal && !this.props.user}
+      error={this.props.error}
+      signUp={true}
+      />
+
+            </div>
       );
   }
 }
@@ -81,11 +110,31 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    error: state.error
   }
 }
+
+// <ToolbarGroup>
+//     <ToolbarSeparator/>
+//     <FlatButton label="login" onTouchTap={this.toggleLogin}/>
+//     <FlatButton label="signup" onTouchTap={this.toggleSignup}/>
+//
+//     <IconMenu iconButtonElement={< IconButton touch={
+// true
+// } > <NavigationExpandMoreIcon/> < /IconButton>}>
+//         <MenuItem primaryText="Download"/>
+//         <MenuItem primaryText="More Info"/>
+//     </IconMenu>
+// </ToolbarGroup>
+//
+// <LoginModal title="sign up" toggle={this.toggleLogin} open={this.state.signupModal}>
+//    <LoginForm signUp={true}/>
+// </LoginModal>
+// <LoginModal title="log in" toggle={this.toggleLogin} open={this.state.loginModal}>
+//     <LoginForm/>
+// </LoginModal>
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopBar)
