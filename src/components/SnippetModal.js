@@ -65,6 +65,7 @@ export default class SnippetModal extends React.Component {
       <FlatButton
       label="Log in or Sign up to Create Actions"
       primary={true}
+      disabled={true}
       />,
 
     ]
