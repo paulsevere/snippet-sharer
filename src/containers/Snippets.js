@@ -16,8 +16,20 @@ class Snippets extends React.Component {
       newSnippet: false,
 
     }
-    this.newText = ''
-    this.newTitle = ''
+    this.newText = ' '
+    this.newTitle = ' '
+  }
+
+  componentWillUpdate() {
+    this.newText = ' '
+    this.newTitle = ' '
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      selected: null,
+      newSnippet: null
+    })
   }
 
   handleMoreClick=(snippet) => {
@@ -59,7 +71,7 @@ class Snippets extends React.Component {
 
   handleFreshModalSubmit = () => {
     this.props.dispatch(postSnippet({
-      title: "wow",
+      title: this.newTitle,
       text: this.newText
     }))
   }
@@ -74,7 +86,7 @@ class Snippets extends React.Component {
       })}
       </SnippetsTable>
 
-    <SnippetModal user={user} onEditorChange={this.updateText} handleClose={this.handleModalClose}  snippet={this.state.selected}/>
+    <SnippetModal user={user} onEditorChange={this.updateText} handleClose={this.handleModalClose}  snippet={this.state.selected}       onTitleChange={this.updateTitle}/>
 
     <SnippetModal fresh={true} user={user}
       onEditorChange={this.updateText}

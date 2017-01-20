@@ -30,12 +30,12 @@ export const postSnippet = (snippet) => {
       headers: {
         Authorization: 'Token token=' + getUser().token
       }
-    }).then((snippets) => {
-      console.log(snippets)
-    // dispatch({
-    //   type: 'SET_SNIPPETS',
-    //   snippets: snippets.snippets
-    // })
+    }).then((snippet) => {
+      console.log(snippet)
+      dispatch({
+        type: 'ADD_SNIPPET',
+        snippet: snippet.snippet
+      })
     })
       .catch(console.error)
   }

@@ -16,9 +16,15 @@ export default function(props) {
   let handleTitleChange = (e) => {
     props.onTitleChange(e.target.value)
   }
+  let titleDisplay = () => {
+    if (props.editable) {
+      return (<TextField defaultValue={snippet.title} onChange={handleTitleChange} hintText="title"></TextField>)
+    }
+    return (<div>{snippet.title}</div>)
+  }
   return (
     <div className="editor-holder">
-      <TextField onChange={handleTitleChange} hintText="title"></TextField>
+      {titleDisplay()}
     <AceEditor
     value={snippet.text}
     mode="javascript"

@@ -44,7 +44,7 @@ export default class SnippetModal extends React.Component {
       />,
     ];
     let actions;
-    if (snippet && user.id === snippet._owner) {
+    if (snippet && user && user.id && user.id === snippet._owner) {
       actions = openActions.concat(ownerActions)
     } else {
       actions = openActions
@@ -56,7 +56,7 @@ export default class SnippetModal extends React.Component {
       actions={actions}
       onRequestClose={this.props.handleClose}
       >
-        <Editor editable={fresh || (snippet && user.id === snippet._owner)} onTitleChange={this.props.onTitleChange} onEditorChange={this.props.onEditorChange} snippet={snippet} />
+        <Editor editable={fresh || (snippet && user && user.id === snippet._owner)} onTitleChange={this.props.onTitleChange} onEditorChange={this.props.onEditorChange} snippet={snippet} />
        </Dialog>
     )
   }

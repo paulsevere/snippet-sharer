@@ -9,6 +9,8 @@ let snippets = function(state = [], action) {
   switch (action.type) {
     case 'SET_SNIPPETS':
       return action.snippets
+    case 'ADD_SNIPPET':
+      return state.concat(action.snippet)
     default:
       return state
   }
