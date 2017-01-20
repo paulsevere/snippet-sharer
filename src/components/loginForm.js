@@ -15,7 +15,6 @@ export default class LoginForm extends React.Component {
     }
     if (this.props.signUp) {
       dispatch(signupAttempt(creds))
-      console.log(creds)
     } else {
       dispatch(loginAttempt(creds))
     }

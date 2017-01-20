@@ -3,7 +3,6 @@ import Dialog from 'material-ui/Dialog';
 import Editor from './EditorComponent'
 import FlatButton from 'material-ui/FlatButton'
 
-// console.log(clip)
 
 
 
