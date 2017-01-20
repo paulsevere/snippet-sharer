@@ -1,9 +1,4 @@
 import React from 'react';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
-import MenuItem from 'material-ui/MenuItem';
-import DropDownMenu from 'material-ui/DropDownMenu';
 import FlatButton from 'material-ui/FlatButton';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import { connect } from 'react-redux'
@@ -26,13 +21,6 @@ class TopBar extends React.Component {
         <ToolbarSeparator/>
         <FlatButton label="login" onTouchTap={this.toggleLogin}/>
         <FlatButton label="signup" onTouchTap={this.toggleSignup}/>
-
-        <IconMenu iconButtonElement={< IconButton touch={
-      true
-      } > <NavigationExpandMoreIcon/> < /IconButton>}>
-            <MenuItem primaryText="Download"/>
-            <MenuItem primaryText="More Info"/>
-        </IconMenu>
     </ToolbarGroup>
     )
   }
@@ -44,13 +32,6 @@ class TopBar extends React.Component {
       <ToolbarGroup>
       <ToolbarSeparator/>
       <FlatButton label="log out" onTouchTap={() => this.props.dispatch(logOut())}/>
-
-      <IconMenu iconButtonElement={< IconButton touch={
-      true
-      } > <NavigationExpandMoreIcon/> < /IconButton>}>
-          <MenuItem primaryText="Download"/>
-          <MenuItem primaryText="More Info"/>
-      </IconMenu>
   </ToolbarGroup>
     )
   }
@@ -76,9 +57,7 @@ class TopBar extends React.Component {
       <div>
                 <Toolbar>
                     <ToolbarGroup firstChild={true}>
-                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-                            <MenuItem value={1} primaryText="All Broadcasts"/>
-                        </DropDownMenu>
+
                     </ToolbarGroup>
                     {this.props.user ? this.logged() : this.notLogged()}
                     </Toolbar>

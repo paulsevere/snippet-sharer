@@ -1,6 +1,6 @@
 import $ from 'jquery'
 function getUser() {
-  return JSON.parse(window.localStorage.getItem('user'))
+  return window.store.getState().user
 }
 export const getSnippets = () => {
   return function(dispatch) {

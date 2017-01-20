@@ -1,14 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
-import brace from 'brace';
 import AceEditor from 'react-ace';
 import TextField from 'material-ui/TextField'
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 
-function onChange(newValue) {
-  console.log('change', newValue);
-}
+
 
 // Render editor
 export default function(props) {
