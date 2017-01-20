@@ -1,8 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getSnippets } from '../actions/snippets'
+import { SnippetsTable } from '../components/SnippetTable'
+import { SnippetItem } from '../components/SnippetTableItem'
 
 
-const mapDispatchToProps = (dispatch) => {
+
+class Snippets extends React.Component {
+  constructor(props) {
+    super(props);
+    this.cool = "fun";
+    this.props.dispatch(getSnippets())
+  }
+
+  render() {
+    let {snippets} = this.props;
+    return (
+      <div>
+      <SnippetsTable>
+        {snippets.map(snip => {
+        return (<SnippetItem key={snip.id} snippet={snip}/>)
+      })}
+      </SnippetsTable>
+    </div>
+      );
+  }
+}
+
+
+
+
+
+
+function mapDispatchToProps(dispatch) {
   return {
     dispatch
   }
@@ -14,22 +44,5 @@ function mapStateToProps(state) {
   }
 }
 
-
-class Snippets extends React.Component {
-  constructor(props) {
-    super(props);
-    this.cool = "fun"
-  }
-  render() {
-    let {snippets} = this.props;
-    return (
-      <div>
-        {snippets.map(e => {
-        return e.title
-      })}
-    </div>
-      );
-  }
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Snippets)

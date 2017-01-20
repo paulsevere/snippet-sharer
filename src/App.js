@@ -23,7 +23,9 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme()}>
       <div className="App">
         <ToolBar/>
+        <div className="snippets-holder">
         <Snippets/>
+        </div>
       </div>
     </MuiThemeProvider>
   </Provider>
