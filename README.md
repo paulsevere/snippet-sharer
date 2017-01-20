@@ -5,17 +5,19 @@
 
 ## Purpose and Funcationality
 
-A Single Page Application built with react and redux that provides a user interface to rails a application that serves jeopardy clues and manages user response history. ( [Repository](https://github.com/paulsevere/jeopardy-backend) -- [Deployed API](https://jeopardy-server-paulsevere.herokuapp.com ))
+A Single Page Application built with react and redux that aggregates code snippets and provides a text field that mimics the behavior of a text editor (syntax highlighting (only javascript is currently suppoerted), etc).
+
+
+( [Repository](https://github.com/paulsevere/jeopardy-backend) -- [Deployed API](https://jeopardy-server-paulsevere.herokuapp.com ))
 <br>
 
-The frontend client allows users to filter clues by keyword and difficulty and features an intuitive interface for submitting answers.  It relies on a combination of "fuzzy" string matching and key-word matching to assess the correctness of user-submitted answers.  In recognition of the fact that that his algorithm is likely to produce "false negatives," users have the opportunity to update their answers after submission.
+The application has limited functionality presently, as I have been unable to implement streaming code editing due to some issues deploying my web socket server.
 
-In the future, I would like to implement a leaderboard to display top user sccores.
 <br>
 
-[Frontend repository]( https://github.com/paulsevere/jeopardy-front-end) >> [Deployed frontend](https://paulsevere.github.io/jeopardy-front-end/index.html) <br>
+[Frontend repository]( https://github.com/paulsevere/snippet-sharer) >> [Deployed frontend](https://paulsevere.github.io/snippet-sharer) <br>
 
-[Backend repository](https://github.com/paulsevere/jeopardy-backend) >> [Deployed backend](https://jeopardy-server-paulsevere.herokuapp.com)
+[Backend repository](https://github.com/paulsevere/express-backend) >> [Deployed backend](https://snippet-server-app.herokuapp.com)
 
 
 ## FrontEnd Technologies Used
