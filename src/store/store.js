@@ -30,7 +30,7 @@ let snippets = function(state = [], action) {
       return state
   }
 }
-let user = function(state = JSON.parse(window.localStorage.getItem('user')), action) {
+let user = function(state = null, action) {
   switch (action.type) {
     case 'USER_LOGIN':
       window.localStorage.setItem('user', JSON.stringify(action.user))

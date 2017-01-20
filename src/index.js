@@ -4,7 +4,7 @@ import App from './App';
 import './index.css';
 window.$ = require('jquery');
 window.jQuery = window.$;
-window.api = 'http://localhost:4741'
+window.api = 'https://snippet-server-app.herokuapp.com'
 
 ReactDOM.render(
   <App />,
