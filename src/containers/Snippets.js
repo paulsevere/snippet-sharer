@@ -80,6 +80,10 @@ class Snippets extends React.Component {
     this.props.dispatch(deleteSnippet(this.state.selected))
   }
 
+  deleteFromTable = (snipp) => {
+    this.props.dispatch(deleteSnippet(snipp))
+  }
+
   doUpdateSnippet = () => {
     let updSnip = {};
     if (this.newText.length > 3) {
@@ -100,7 +104,7 @@ class Snippets extends React.Component {
       <div>
       <SnippetsTable handleNewClick={this.handleNewClick}>
         {snippets.map(snip => {
-        return (<SnippetItem user={user} key={snip.id} clickHandle={this.handleMoreClick} snippet={snip}/>)
+        return (<SnippetItem deleteSnip={this.deleteSnippet} user={user} key={snip.id} clickHandle={this.handleMoreClick} snippet={snip}/>)
       })}
       </SnippetsTable>
 
