@@ -8,48 +8,39 @@ import FlatButton from 'material-ui/FlatButton';
  *
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
-export default class LoginModal extends React.Component {
-  state = {
-    open: this.props.open,
+export default function LoginModal(props) {
+
+
+
+  let handleClose = () => {
+    props.toggle()
   };
 
-  handleOpen = () => {
-    this.setState({
-      open: true
-    });
-  };
+  const actions = [
+    <FlatButton
+    label="Cancel"
+    primary={true}
+    onTouchTap={handleClose}
+    />,
+    <FlatButton
+    label="Submit"
+    primary={true}
+    keyboardFocused={true}
+    onTouchTap={handleClose}
+    />,
+  ];
 
-  handleClose = () => {
-    this.props.toggle()
-  };
-
-  render() {
-    const actions = [
-      <FlatButton
-      label="Cancel"
-      primary={true}
-      onTouchTap={this.handleClose}
-      />,
-      <FlatButton
-      label="Submit"
-      primary={true}
-      keyboardFocused={true}
-      onTouchTap={this.handleClose}
-      />,
-    ];
-
-    return (
-      <div>
+  return (
+    <div>
         <Dialog
-      title="Dialog With Actions"
-      actions={actions}
-      modal={false}
-      open={this.props.open}
-      onRequestClose={this.props.toggle}
-      >
-          The actions in this window were passed in as an array of React objects.
+    title={props.title}
+    actions={actions}
+    modal={false}
+    open={props.open}
+    onRequestClose={props.toggle}
+    >
+  {props.children}
         </Dialog>
       </div>
-      );
-  }
+    );
 }
