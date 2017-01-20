@@ -3,6 +3,17 @@ import thunk from 'redux-thunk'
 // import { snippetsReducer } from './snippets_reducer';
 
 
+function findByIdAndUpdate(arr, item) {
+  return arr.map(el => {
+    if (el._id === item._id) {
+      return item
+    } else {
+      return el
+    }
+  })
+}
+
+
 
 
 let snippets = function(state = [], action) {
@@ -11,6 +22,10 @@ let snippets = function(state = [], action) {
       return action.snippets
     case 'ADD_SNIPPET':
       return state.concat(action.snippet)
+    case 'DELETE_SNIPPET':
+      return state.filter(snip => snip._id !== action.snippet._id)
+    case 'UPDATE_SNIPPET':
+      return findByIdAndUpdate(state, action.snippet)
     default:
       return state
   }

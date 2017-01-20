@@ -28,7 +28,6 @@ export default function LoginModal(props) {
     <FlatButton
     label="Submit"
     primary={true}
-    keyboardFocused={true}
     onTouchTap={handleSubmit}
     />,
   ];

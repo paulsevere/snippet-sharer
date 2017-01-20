@@ -31,7 +31,6 @@ export const postSnippet = (snippet) => {
         Authorization: 'Token token=' + getUser().token
       }
     }).then((snippet) => {
-      console.log(snippet)
       dispatch({
         type: 'ADD_SNIPPET',
         snippet: snippet.snippet
@@ -41,5 +40,47 @@ export const postSnippet = (snippet) => {
   }
 }
 
+export const updateSnippet = (snippet, newSnippet) => {
+  return function(dispatch) {
+    $.ajax({
+      method: 'PATCH',
+      url: window.api + '/snippets/' + snippet._id,
+      data: {
+        snippet: newSnippet
+      },
+      headers: {
+        Authorization: 'Token token=' + getUser().token
+      }
+    }).then(() => {
+      let upd = Object.assign(snippet, newSnippet);
+      dispatch({
+        type: 'UPDATE_SNIPPET',
+        snippet: upd
+      })
+    })
+      .catch(console.error)
+  }
+}
+
+export const deleteSnippet = (snippet) => {
+  return function(dispatch) {
+    $.ajax({
+      method: 'DELETE',
+      url: window.api + '/snippets/' + snippet._id,
+      headers: {
+        Authorization: 'Token token=' + getUser().token
+      }
+    }).then(() => {
+      dispatch({
+        type: 'DELETE_SNIPPET',
+        snippet: snippet
+      })
+    })
+      .catch(console.error)
+  }
+}
+window.updateSnippet = updateSnippet;
+
+window.deleteSnippet = deleteSnippet;
 window.postSnippet = postSnippet;
 window.getSnippets = getSnippets

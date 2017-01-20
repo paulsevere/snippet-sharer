@@ -20,7 +20,7 @@ export default function(props) {
     if (props.editable) {
       return (<TextField defaultValue={snippet.title} onChange={handleTitleChange} hintText="title"></TextField>)
     }
-    return (<div>{snippet.title}</div>)
+    return (<div className="snippet-title">{snippet.title}</div>)
   }
   return (
     <div className="editor-holder">

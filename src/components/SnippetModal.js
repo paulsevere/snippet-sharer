@@ -3,9 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import Editor from './EditorComponent'
 import FlatButton from 'material-ui/FlatButton'
 
-
-
-
+// console.log(clip)
 
 
 
@@ -17,9 +15,36 @@ export default class SnippetModal extends React.Component {
       open: false
     }
   }
+
   render() {
     let {user, snippet, fresh} = this.props;
     const openActions = [
+      <FlatButton
+      label="Cancel"
+      primary={true}
+      onTouchTap={this.props.handleClose}
+      />,
+
+    ];
+    const ownerActions = [
+      <FlatButton
+      label="Cancel"
+      primary={true}
+      onTouchTap={this.props.handleClose}
+      />,
+      <FlatButton
+      label="Delete"
+      primary={true}
+      onTouchTap={this.props.deleteSnippet}
+      />,
+      <FlatButton
+      label="Update"
+      primary={true}
+      onTouchTap={this.props.updateSnippet}
+      />,
+    ];
+
+    const createActions = [
       <FlatButton
       label="Cancel"
       primary={true}
@@ -30,22 +55,14 @@ export default class SnippetModal extends React.Component {
       primary={true}
       onTouchTap={this.props.handleSubmit}
       />,
-    ];
-    const ownerActions = [
-      <FlatButton
-      label="Delete"
-      primary={true}
-      onTouchTap={this.props.handleClose}
-      />,
-      <FlatButton
-      label="Update"
-      primary={true}
-      onTouchTap={this.props.handleClose}
-      />,
-    ];
+
+    ]
+
     let actions;
-    if (snippet && user && user.id && user.id === snippet._owner) {
-      actions = openActions.concat(ownerActions)
+    if (fresh) {
+      actions = createActions
+    } else if (snippet && user && user.id && user.id === snippet._owner) {
+      actions = ownerActions
     } else {
       actions = openActions
     }

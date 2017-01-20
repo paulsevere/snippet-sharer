@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSnippets, postSnippet } from '../actions/snippets'
+import { getSnippets, postSnippet, deleteSnippet, updateSnippet } from '../actions/snippets'
 import { SnippetsTable } from '../components/SnippetTable'
 import { SnippetItem } from '../components/SnippetTableItem'
 import SnippetModal from '../components/SnippetModal'
@@ -53,7 +53,6 @@ class Snippets extends React.Component {
   }
 
   updateTitle = (newTitle) => {
-    console.log(newTitle)
     this.newTitle = newTitle;
   }
 
@@ -76,6 +75,25 @@ class Snippets extends React.Component {
     }))
   }
 
+
+  doDeleteSnippet = () => {
+    this.props.dispatch(deleteSnippet(this.state.selected))
+  }
+
+  doUpdateSnippet = () => {
+    let updSnip = {};
+    if (this.newText.length > 3) {
+      updSnip.text = this.newText
+    }
+    if (this.newTitle.length > 2) {
+      updSnip.title = this.newTitle
+    }
+
+    this.props.dispatch(updateSnippet(this.state.selected, updSnip))
+  }
+
+
+
   render() {
     let {snippets, user} = this.props;
     return (
@@ -86,9 +104,10 @@ class Snippets extends React.Component {
       })}
       </SnippetsTable>
 
-    <SnippetModal user={user} onEditorChange={this.updateText} handleClose={this.handleModalClose}  snippet={this.state.selected}       onTitleChange={this.updateTitle}/>
+    <SnippetModal user={user} onEditorChange={this.updateText} handleClose={this.handleModalClose}  snippet={this.state.selected} deleteSnippet={this.doDeleteSnippet}  updateSnippet={this.doUpdateSnippet}     onTitleChange={this.updateTitle}/>
 
     <SnippetModal fresh={true} user={user}
+      deleteSnippet={this.doDeleteSnippet}
       onEditorChange={this.updateText}
       handleClose={this.handleFreshModalClose}
       handleSubmit={this.handleFreshModalSubmit}
