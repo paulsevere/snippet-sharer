@@ -56,10 +56,25 @@ export default class SnippetModal extends React.Component {
       />,
 
     ]
+    const createActionsNoUser = [
+      <FlatButton
+      label="Cancel"
+      primary={true}
+      onTouchTap={this.props.handleClose}
+      />,
+      <FlatButton
+      label="Log in or Sign up to Create Actions"
+      primary={true}
+      />,
+
+    ]
 
     let actions;
-    if (fresh) {
+    if (fresh && user) {
       actions = createActions
+
+    } else if (fresh && !user) {
+      actions = createActionsNoUser
     } else if (snippet && user && user.id && user.id === snippet._owner) {
       actions = ownerActions
     } else {
