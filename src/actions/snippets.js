@@ -1,6 +1,8 @@
 import $ from 'jquery'
-
-export const getSnippets = (creds) => {
+function getUser() {
+  return JSON.parse(window.localStorage.getItem('user'))
+}
+export const getSnippets = () => {
   return function(dispatch) {
     $.ajax({
       method: 'GET',
@@ -17,4 +19,27 @@ export const getSnippets = (creds) => {
 }
 
 
+export const postSnippet = (snippet) => {
+  return function(dispatch) {
+    $.ajax({
+      method: 'POST',
+      url: window.api + '/snippets',
+      data: {
+        snippet
+      },
+      headers: {
+        Authorization: 'Token token=' + getUser().token
+      }
+    }).then((snippets) => {
+      console.log(snippets)
+    // dispatch({
+    //   type: 'SET_SNIPPETS',
+    //   snippets: snippets.snippets
+    // })
+    })
+      .catch(console.error)
+  }
+}
+
+window.postSnippet = postSnippet;
 window.getSnippets = getSnippets

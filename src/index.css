@@ -7,3 +7,13 @@ body {
 .snippets-holder{
   padding:30px;
 }
+
+.editor-holder{
+  border:1px solid rgba(255, 255, 255, 0.2);
+  padding:10px;
+  border-radius:2px;
+}
+.ace-monokai{
+  background-color: transparent !important;
+
+}
