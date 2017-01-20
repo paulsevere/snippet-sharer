@@ -104,7 +104,7 @@ class Snippets extends React.Component {
       <div>
       <SnippetsTable handleNewClick={this.handleNewClick}>
         {snippets.map(snip => {
-        return (<SnippetItem deleteSnip={this.deleteSnippet} user={user} key={snip.id} clickHandle={this.handleMoreClick} snippet={snip}/>)
+        return (<SnippetItem deleteSnip={this.deleteFromTable} user={user} key={snip.id} clickHandle={this.handleMoreClick} snippet={snip}/>)
       })}
       </SnippetsTable>
 
