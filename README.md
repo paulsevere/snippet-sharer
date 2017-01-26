@@ -8,7 +8,6 @@
 A Single Page Application built with react and redux that aggregates code snippets and provides a text field that mimics the behavior of a text editor (syntax highlighting (only javascript is currently suppoerted), etc).
 
 
-( [Repository](https://github.com/paulsevere/jeopardy-backend) -- [Deployed API](https://jeopardy-server-paulsevere.herokuapp.com ))
 <br>
 
 The application has limited functionality presently, as I have been unable to implement streaming code editing due to some issues deploying my web socket server.
@@ -34,12 +33,14 @@ The application has limited functionality presently, as I have been unable to im
 ## Development Process
 
 1. Brainstorm layout and develop wireframes.
+2. Struggle with namespaced socket server deployment
+
 2. Map basic structure of Redux Store and React Containers
 3. Create required API Calls and corresponding Redux Actions
 4. Create individual presentational UI components
 5. Fill containers with components and ensure access to needed action creators and state items.
-6. Polish UI style using "materialize-css" library.
-7. Due to deployment issue with "create-react-app" boilerplate, I migrated to the General Assembly browser template and started a fresh repo (this repo).  The commit history prior to that migration can be found at [paulsevere/jeopardy-frontend](https://github.com/paulsevere/jeopardy-frontend).
+6. Polish UI style using "material-ui" react component library.
+
 
 ## User Stories
 
